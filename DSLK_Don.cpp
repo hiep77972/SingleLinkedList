@@ -256,8 +256,8 @@ void QS(LList*L){
 		p=L->phead;
 		L->phead=L->phead->link;
 		p->link=NULL;
-		if(p->infor.ma <= tag->infor.ma) insert_dau(&L1,p->infor);// >
-		else insert_dau(&L2,p->infor);
+		if(p->infor.ma <= tag->infor.ma) insert_cuoi(&L1,p->infor);// >
+		else insert_cuoi(&L2,p->infor);
 	}
 	QS(&L1);
 	QS(&L2);
@@ -326,7 +326,9 @@ void merge(LList *L,LList *L1,LList *L2){
 void tach(LList L,LList *L1,LList *L2){
     Node *tmp = getmid(L);
     L1->phead=L.phead;
+    L1->ptail=tmp;
     L2->phead=tmp->link;
+    L2->ptail=L.ptail;
     tmp->link=NULL;
 }
 void MergeSort(LList *L){
@@ -410,10 +412,10 @@ int main(){
 
 //	QS(&L);
 //	selectionSort(&L);
-	insertionSort(&L);
+//	insertionSort(&L);
 //	in(getmid(L)->infor);
 
-//	MergeSort(&L);	
+	MergeSort(&L);	
 	cout<<'\n';
 	duyet(L);
 
@@ -433,4 +435,3 @@ int main(){
 	
 	return 0;
 }
-
